@@ -11,7 +11,7 @@ baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 # SNS settings
-RSS: false
+RSS: true
 weibo_username:     zsQyBus
 zhihu_username:     false
 github_username:    cirno380a
@@ -59,16 +59,16 @@ duoshuo_share: false                     # set to false if you want to use Comme
 
 # Analytics settings
 # Baidu Analytics
-ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+ba_track_id: false
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_track_id: false            # Format: UA-xxxxxx-xx
+ga_domain: false
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Hello World!"
+sidebar-about-description: "An amateur public transportation photographer. A PHP Beginner. Plus Ultra!!"
 sidebar-avatar: /img/meta/avatar.jpg     # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
