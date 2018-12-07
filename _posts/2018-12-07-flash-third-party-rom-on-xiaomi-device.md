@@ -13,33 +13,39 @@ tags:
 
 为了让自己以后刷机不再蒙圈儿，于昨天凌晨亲手实践了一次不使用所谓第三方开发者工具刷机的全过程之后，决定把过程记录下来，以作备考。
 
-###1. 解 BOOTLOADER 锁
+### 0. 备份重要数据
+
+刷机前必须做的一个步骤：**检查联系人、多媒体资料、游戏存档是否已经备份妥当。**毕竟数据无价。
+
+### 1. 解 BOOTLOADER 锁
 
 现在新出的小米手机大多都已经把 BOOTLOADER 锁上了。要想刷任何的第三方 ROM ，前提是把 BOOTLOADER 锁给解掉。
 
-小米已经推出了官方解锁工具，参见 http://www.miui.com/unlock/index.html . 按照网页上的和解锁工具上的操作步骤提示一步步来就好。
+小米已经推出了官方解锁工具，参见 [http://www.miui.com/unlock/index.html](http://www.miui.com/unlock/index.html) . 按照网页上的和解锁工具上的操作步骤提示一步步来就好。
 
-###2. 部署 Platform Tools
+**注意！**目前新款的小米设备解锁时会要求清除所有数据。所以一定要做好备份。
+
+### 2. 部署 Platform Tools
 
 刷入 Recovery 所用到的 `fastboot`,  `adb` 等工具，都包含在了 Platform Tools 里面。这个工具包会捆扎到 Android Studio 上。如果没有安装 Android Studio ，也可以去下载使用纯命令行的工具包。
 
 Google 也放出了 Platform Tools 的下载链接。参见：
 
-https://dl.google.com/android/repository/platform-tools-latest-darwin.zip (MAC)
+[https://dl.google.com/android/repository/platform-tools-latest-darwin.zip](https://dl.google.com/android/repository/platform-tools-latest-darwin.zip) (MAC)
 
-https://dl.google.com/android/repository/platform-tools-latest-linux.zip (LINUX)
+[https://dl.google.com/android/repository/platform-tools-latest-linux.zip](https://dl.google.com/android/repository/platform-tools-latest-linux.zip) (LINUX)
 
-https://dl.google.com/android/repository/platform-tools-latest-windows.zip (WIDNOWS)
+[https://dl.google.com/android/repository/platform-tools-latest-windows.zip](https://dl.google.com/android/repository/platform-tools-latest-windows.zip) (WIDNOWS)
 
 （选择对应操作系统下载就好）
 
 （最好添加一个环境变量，以后就不用频繁键入完整的 Platform Tools 路径了）
 
-###3. 下载并刷入 TWRP Recovery
+### 3. 下载并刷入 TWRP Recovery
 
-部署好 Platform Tools 之后，前往 https://twrp.me/Devices/ ，查找相应手机设备的 TWRP 镜像，下载到本地，备用。
+部署好 Platform Tools 之后，前往 [https://twrp.me/Devices/](https://twrp.me/Devices/) ，查找相应手机设备的 TWRP 镜像，下载到本地，备用。
 
-把刚刚解锁好的手机用 USB 线连接到电脑，关机状态下按住`电源键` + `音量-键`，进入 Fastboot 模式。
+把刚刚解锁好的手机用 USB 线连接到电脑，关机状态下按住 `电源键` + `音量-键` ，进入 Fastboot 模式。
 
 在命令行界面输入以下指令：
 
@@ -47,7 +53,7 @@ https://dl.google.com/android/repository/platform-tools-latest-windows.zip (WIDN
 
 这条指令会给出一个连接到电脑的所有 Android 设备列表。如果看见一串短的散列字符，那就证明设备和电脑连接正常。如果没响应可以试着重新安装设备驱动（Windows 环境下）
 
-小米也给出了手机驱动的下载链接：https://www.mi.com/c/service/download/
+小米也给出了手机驱动的下载链接：[https://www.mi.com/c/service/download/](https://www.mi.com/c/service/download/)
 
 如果一切正常，就立马刷入 Recovery 吧：
 
@@ -65,19 +71,19 @@ https://dl.google.com/android/repository/platform-tools-latest-windows.zip (WIDN
 
 刷写 Recovery 步骤结束。根据 TWRP 的提示操作就好。
 
-注意！此时未刷入第三方系统的情况下，重启之后官方 ROM 还是会把你刚刷的 TWRP Recovery 给更新成官方 Recovery. 所以**在刷入第三方 ROM 之前，尽量避免关机/重启操作，否则又得重新刷入 TWRP 了。**
+**注意！**此时未刷入第三方系统的情况下，重启之后官方 ROM 还是会把刚刷的 TWRP Recovery 给更新成官方 Recovery. 所以**在刷入第三方 ROM 之前，尽量避免关机/重启操作，否则又得重新刷入 TWRP 了。**
 
-###4. 使用 TWRP 清除手机数据
+### 4. 使用 TWRP 清除手机数据
 
-进入 TWRP 的**“清除”**菜单，点按**“高级清除”**，在要清除的分区内，把`"Dalvik/ART Cache"`, `"Cache"`, `"System"`, `"Data"`打上勾。内置存储的话，如果打算把整台机子的数据都抹掉的话，也可以打上。一般还是不要打了。然后滑动滑块，开始清除数据。清除数据成功后，才能开始下一步操作。
+进入 TWRP 的**“清除”**菜单，点按**“高级清除”**，在要清除的分区内，把 `"Dalvik/ART Cache"`, `"Cache"`, `"System"`, `"Data"` 打上勾。如果打算把整台机子的数据都抹掉，可以把内置存储选项也一并勾上。一般还是不要打了。然后滑动滑块，开始清除数据。清除数据成功后，才能开始下一步操作。
 
-###5. 使用 ADB Sideload 刷写第三方ROM
+### 5. 使用 ADB Sideload 刷写第三方ROM
 
 之前看见友人开发 Android 系统时使用了这一种刷入方法，于是去查了一下。发现真的很方便。
 
-这种方法不需要把 ROM 包复制到手机存储/ SD 卡，而是直接通过 USB 推送 ROM 到 TWRP ，然后自动刷写，但效果和卡刷无异。这次我尝试使用这种方法刷机。
+这种方法**不需要把 ROM 包复制到手机存储/ SD 卡，而是直接通过 USB 推送 ROM 到 TWRP ，然后自动刷写，但效果和卡刷无异。**所以这次我尝试使用这种方法刷机。
 
-在 TWRP 的**“高级选项”**中，点按`"ADB Sideload"`，看情况勾选清除 Cache ，然后滑动滑块开始 Sideload.
+在 TWRP 的**“高级选项”**中，点按 `"ADB Sideload"` ，看情况勾选清除 Cache ，然后滑动滑块开始 Sideload.
 
 通过 USB 线把手机和电脑连在一起，然后在命令行中输入：
 
@@ -89,14 +95,14 @@ https://dl.google.com/android/repository/platform-tools-latest-windows.zip (WIDN
 
 如果刷入成功了，那可以大胆的点击重启进系统了。
 
-###Extra: 刷入 OpenGapps
+### Extra: 刷入 OpenGapps
 这个是可选操作。需要 Google 套件的可以一试。
 
-OpenGapps 可以在 https://opengapps.org/ 获取，下载对应 CPU 架构、 Android 版本的包即可。
+OpenGapps 可以在 [https://opengapps.org/](https://opengapps.org/) 获取，下载对应 CPU 架构、 Android 版本的包即可。
 
 刷入方法和**“使用 ADB Sideload 刷写第三方 ROM ”**这个部分一模一样。但**刷入完成之后必须回到 TWRP 的“清除”菜单，恢复一次出厂设置，才能重启进系统。**
 
-###THE · 碎碎念
+### THE · 碎碎念
 有些设备在系统设置锁屏密码后，开机进入系统 / 进入 TWRP 必须输入正确的锁屏密码。这点不用担心，记住密码就好。
 
 顺便好像高通 9008 模式能绕过 BOOTLOADER 锁直接刷机。目前我还没尝试过，得找个时间买条工程线试一下。
