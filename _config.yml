@@ -1,11 +1,11 @@
 # Site settings
 title: CRH380A-2722
-SEOTitle: CRH380A-2722 | 一个热爱公共交通的精神软工人
+SEOTitle: CRH380A-2722 | 精神软工人
 header-img: img/bg-default.jpg
 email: zs6096@gmail.com
 description: ""
 keyword: ""
-url: "https://cirno380a.moe"              # your host, for absolute URL
+url: "https://blog.cirno380a.moe"              # your host, for absolute URL
 baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
@@ -68,13 +68,13 @@ ga_domain: false
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "An amateur public transportation photographer. A PHP Beginner. Plus Ultra!!"
+sidebar-about-description: "茶学汪 / 公共交通摄影爱好者 / PHPer / 车万沙包 / 音游苦手 / Ingress Resistance / Plus Ultra!!"
 sidebar-avatar: /img/meta/avatar.jpg     # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
 # Featured Tags
-featured-tags: true                     # whether or not using Feature-Tags
+featured-tags: false                     # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 
